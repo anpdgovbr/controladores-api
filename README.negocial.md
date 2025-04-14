@@ -29,7 +29,6 @@ O serviço se baseia nos conceitos definidos pela **LGPD (Lei nº 13.709/2018)**
 | ------------------ | --------------------------------------------------------------------------- |
 | `Controlador`      | Pessoa natural ou jurídica que toma decisões sobre o tratamento de dados.   |
 | `Encarregado`      | Ponto de contato com titulares e com a ANPD (DPO), interno ou terceirizado. |
-| `EmpresaDPO`       | Empresa prestadora de serviço de encarregado (quando for externo).          |
 | `GrupoEconomico`   | Conjunto de controladores com vínculo estratégico e econômico comum.        |
 | `Socio`            | Sócio ou acionista, com CPF/CNPJ, tipo de participação e nacionalidade.     |
 | `SocioControlador` | Relação N:N entre sócios e controladores, com percentual de participação.   |
