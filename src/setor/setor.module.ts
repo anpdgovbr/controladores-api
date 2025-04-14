@@ -4,6 +4,6 @@ import { SetorController } from './setor.controller';
 
 @Module({
   providers: [SetorService],
-  controllers: [SetorController]
+  controllers: [SetorController],
 })
 export class SetorModule {}

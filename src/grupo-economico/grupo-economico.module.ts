@@ -4,6 +4,6 @@ import { GrupoEconomicoController } from './grupo-economico.controller';
 
 @Module({
   providers: [GrupoEconomicoService],
-  controllers: [GrupoEconomicoController]
+  controllers: [GrupoEconomicoController],
 })
 export class GrupoEconomicoModule {}

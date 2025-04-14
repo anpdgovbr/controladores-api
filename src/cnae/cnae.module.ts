@@ -4,6 +4,6 @@ import { CnaeController } from './cnae.controller';
 
 @Module({
   providers: [CnaeService],
-  controllers: [CnaeController]
+  controllers: [CnaeController],
 })
 export class CnaeModule {}

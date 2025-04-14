@@ -9,7 +9,9 @@ describe('SocioControladorController', () => {
       controllers: [SocioControladorController],
     }).compile();
 
-    controller = module.get<SocioControladorController>(SocioControladorController);
+    controller = module.get<SocioControladorController>(
+      SocioControladorController,
+    );
   });
 
   it('should be defined', () => {

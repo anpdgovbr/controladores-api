@@ -4,6 +4,6 @@ import { SocioController } from './socio.controller';
 
 @Module({
   providers: [SocioService],
-  controllers: [SocioController]
+  controllers: [SocioController],
 })
 export class SocioModule {}
