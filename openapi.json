@@ -1,0 +1,642 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "AppController_getHello",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "App"
+        ]
+      }
+    },
+    "/controladores": {
+      "post": {
+        "operationId": "ControladorController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateControladorDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Controladores"
+        ]
+      },
+      "get": {
+        "operationId": "ControladorController_findAll",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": 1,
+              "example": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": 10,
+              "example": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": "",
+              "example": "tecnologia",
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderBy",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": "id",
+              "example": "nome",
+              "type": "string"
+            }
+          },
+          {
+            "name": "ascending",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": true,
+              "example": true,
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Controladores"
+        ]
+      }
+    },
+    "/controladores/{id}": {
+      "get": {
+        "operationId": "ControladorController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Controladores"
+        ]
+      },
+      "patch": {
+        "operationId": "ControladorController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateControladorDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Controladores"
+        ]
+      },
+      "delete": {
+        "operationId": "ControladorController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Controladores"
+        ]
+      }
+    },
+    "/encarregados": {
+      "post": {
+        "operationId": "EncarregadoController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEncarregadoDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Encarregados"
+        ]
+      },
+      "get": {
+        "operationId": "EncarregadoController_findAll",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": 1,
+              "example": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": 10,
+              "example": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": "",
+              "example": "tecnologia",
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderBy",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": "id",
+              "example": "nome",
+              "type": "string"
+            }
+          },
+          {
+            "name": "ascending",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": true,
+              "example": true,
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Encarregados"
+        ]
+      }
+    },
+    "/encarregados/{id}": {
+      "get": {
+        "operationId": "EncarregadoController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Encarregados"
+        ]
+      },
+      "patch": {
+        "operationId": "EncarregadoController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEncarregadoDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Encarregados"
+        ]
+      },
+      "delete": {
+        "operationId": "EncarregadoController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Encarregados"
+        ]
+      }
+    },
+    "/setores": {
+      "post": {
+        "operationId": "SetorController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSetorDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Setores"
+        ]
+      },
+      "get": {
+        "operationId": "SetorController_findAll",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": 1,
+              "example": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": 10,
+              "example": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": "",
+              "example": "tecnologia",
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderBy",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": "id",
+              "example": "nome",
+              "type": "string"
+            }
+          },
+          {
+            "name": "ascending",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": true,
+              "example": true,
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Setores"
+        ]
+      }
+    },
+    "/setores/{id}": {
+      "get": {
+        "operationId": "SetorController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Setores"
+        ]
+      },
+      "patch": {
+        "operationId": "SetorController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSetorDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Setores"
+        ]
+      },
+      "delete": {
+        "operationId": "SetorController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Setores"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Cadastro de Controladores",
+    "description": "API para gerenciamento de controladores, encarregados e grupo econômico conforme LGPD",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "CreateControladorDto": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "example": "Empresa Exemplo S.A."
+          },
+          "tipo": {
+            "type": "string",
+            "enum": [
+              "PESSOA_JURIDICA",
+              "PESSOA_NATURAL"
+            ]
+          },
+          "cnpj": {
+            "type": "string",
+            "example": "12345678000199"
+          },
+          "cpf": {
+            "type": "string",
+            "example": "12345678900"
+          },
+          "site": {
+            "type": "string",
+            "example": "https://www.empresa.com.br"
+          },
+          "email": {
+            "type": "string",
+            "example": "contato@empresa.com.br"
+          },
+          "telefone": {
+            "type": "string",
+            "example": "(61) 99999-9999"
+          },
+          "politicaPrivacidadeUrl": {
+            "type": "string",
+            "example": "https://www.empresa.com.br/politica-privacidade"
+          },
+          "setorId": {
+            "type": "number",
+            "example": 3,
+            "description": "ID do Setor vinculado"
+          },
+          "cnaeId": {
+            "type": "number",
+            "example": 5,
+            "description": "ID do CNAE vinculado"
+          },
+          "grupoEconomicoId": {
+            "type": "number",
+            "example": 1,
+            "description": "ID do Grupo Econômico"
+          }
+        },
+        "required": [
+          "nome",
+          "tipo"
+        ]
+      },
+      "UpdateControladorDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateEncarregadoDto": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "example": "João da Silva"
+          },
+          "email": {
+            "type": "string",
+            "example": "joao@empresa.com.br"
+          },
+          "telefone": {
+            "type": "string",
+            "example": "(61) 99999-0000"
+          },
+          "externo": {
+            "type": "boolean",
+            "example": true,
+            "description": "Se é DPO terceirizado"
+          },
+          "controladorEmpresaExternaId": {
+            "type": "number",
+            "example": 2,
+            "description": "ID do controlador que atua como empresa DPO (opcional)"
+          },
+          "controladorId": {
+            "type": "number",
+            "example": 1,
+            "description": "ID do controlador principal"
+          }
+        },
+        "required": [
+          "nome",
+          "email",
+          "externo",
+          "controladorId"
+        ]
+      },
+      "UpdateEncarregadoDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateSetorDto": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "example": "Tecnologia"
+          }
+        },
+        "required": [
+          "nome"
+        ]
+      },
+      "UpdateSetorDto": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

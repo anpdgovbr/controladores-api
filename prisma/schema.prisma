@@ -1,0 +1,162 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+// ─────────────────────────────
+// 🎯 Controlador
+// ─────────────────────────────
+model Controlador {
+  id                       Int              @id @default(autoincrement())
+  nome                    String
+  tipo                    TipoControlador   @default(PESSOA_JURIDICA)
+  cnpj                    String?           @unique
+  cpf                     String?           @unique
+  site                    String?
+  email                   String?
+  telefone                String?
+  politicaPrivacidadeUrl  String?
+
+  setorId                 Int?
+  cnaeId                  Int?
+  grupoEconomicoId        Int?
+
+  encarregados            Encarregado[]
+  sociosControlador       SocioControlador[]
+  encarregadosComoEmpresaExterna Encarregado[] @relation("EncarregadoEmpresaExterna")
+  grupoEconomico          GrupoEconomico?   @relation(fields: [grupoEconomicoId], references: [id])
+  setor                   Setor?            @relation(fields: [setorId], references: [id])
+  cnae                    CNAE?             @relation(fields: [cnaeId], references: [id])
+
+  active                  Boolean           @default(true)
+  exclusionDate           DateTime?
+
+  @@map("Controlador")
+  @@index([active])
+}
+
+// ─────────────────────────────
+// 👤 Encarregado de Dados (DPO)
+// ─────────────────────────────
+model Encarregado {
+  id                  Int              @id @default(autoincrement())
+  nome                String
+  email               String
+  telefone            String?
+  externo             Boolean           @default(false)
+  controladorEmpresaExternaId Int?
+  empresaExterna      Controlador?      @relation("EncarregadoEmpresaExterna", fields: [controladorEmpresaExternaId], references: [id])
+  controladorId       Int
+  controlador         Controlador       @relation(fields: [controladorId], references: [id])
+
+  active              Boolean           @default(true)
+  exclusionDate       DateTime?
+
+  @@map("Encarregado")
+}
+
+
+
+// ─────────────────────────────
+// 🧑‍💼 Sócio
+// ─────────────────────────────
+model Socio {
+  id                   Int                         @id @default(autoincrement())
+  nome                 String
+  cpfCnpj              String                      @unique
+  tipoParticipacao     TipoParticipacaoSocietaria
+  nacionalidade        String?
+
+  vinculacoes          SocioControlador[]
+
+  active               Boolean                     @default(true)
+  exclusionDate        DateTime?
+
+  @@map("Socio")
+}
+
+// ─────────────────────────────
+// 🔗 Relacionamento N:N entre Socio e Controlador
+// ─────────────────────────────
+model SocioControlador {
+  id              Int        @id @default(autoincrement())
+  socioId         Int
+  controladorId   Int
+  percentual      Float?
+
+  socio           Socio      @relation(fields: [socioId], references: [id])
+  controlador     Controlador@relation(fields: [controladorId], references: [id])
+
+  @@unique([socioId, controladorId])
+}
+
+// ─────────────────────────────
+// Grupo Econômico
+// ─────────────────────────────
+model GrupoEconomico {
+  id            Int            @id @default(autoincrement())
+  nome          String         @unique
+  controladores Controlador[]
+  observacoes   String?
+
+  active        Boolean        @default(true)
+  exclusionDate DateTime?
+
+  @@map("GrupoEconomico")
+}
+
+
+// ─────────────────────────────
+// 📘 CNAE
+// ─────────────────────────────
+model CNAE {
+  id            Int         @id @default(autoincrement())
+  code          String      @unique @db.VarChar(10)
+  nome          String      @db.VarChar(255)
+  controladores Controlador[]
+  active        Boolean     @default(true)
+  exclusionDate DateTime?
+
+  @@map("CNAE")
+}
+
+// ─────────────────────────────
+// 🧭 Setor de Atuação
+// ─────────────────────────────
+model Setor {
+  id            Int         @id @default(autoincrement())
+  nome          String      @unique
+  controladores Controlador[]
+  active        Boolean     @default(true)
+  exclusionDate DateTime?
+
+  @@map("Setor")
+}
+
+// ─────────────────────────────
+// 🔠 Enums
+// ─────────────────────────────
+enum TipoControlador {
+  PESSOA_JURIDICA
+  PESSOA_NATURAL
+}
+
+enum TipoParticipacaoSocietaria {
+  SOCIO_ADMINISTRADOR
+  SOCIO_CAPITALISTA
+  ACIONISTA_OR
+  ACIONISTA_PR
+  OUTROS
+}
