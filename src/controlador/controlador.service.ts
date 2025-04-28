@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 
 import { CreateControladorDto } from './dto/create-controlador.dto';
 import { UpdateControladorDto } from './dto/update-controlador.dto';
@@ -12,6 +12,40 @@ export class ControladorService {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(data: CreateControladorDto) {
+    const { cnpj, cpf } = data;
+
+    if (!cnpj && !cpf) {
+      throw new BadRequestException('É necessário informar CNPJ ou CPF.');
+    }
+
+    const orConditions: Prisma.ControladorWhereInput[] = [];
+
+    if (cnpj) {
+      orConditions.push({ cnpj });
+    }
+
+    if (cpf) {
+      orConditions.push({ cpf });
+    }
+
+    const existing = await this.prisma.controlador.findFirst({
+      where: {
+        OR: orConditions,
+      },
+    });
+
+    if (existing) {
+      if (!existing.active) {
+        throw new BadRequestException(
+          'Já existe um controlador com este CNPJ/CPF, mas está desativado. Considere restaurá-lo.',
+        );
+      } else {
+        throw new BadRequestException(
+          'Já existe um controlador ativo com este CNPJ/CPF.',
+        );
+      }
+    }
+
     return this.prisma.controlador.create({ data });
   }
 
