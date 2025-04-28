@@ -3,11 +3,14 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { PrismaClientExceptionFilter } from './common/filters/prisma-client-exception.filter';
+import * as https from 'https';
+import * as fs from 'fs';
+import * as path from 'path';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // ✅ Validação global (DTOs, query, etc.)
+  // ✅ Validação global
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,
@@ -16,7 +19,7 @@ async function bootstrap() {
     }),
   );
 
-  // ✅ Filtro de exceções do Prisma (em português, customizado)
+  // ✅ Filtro de exceções
   app.useGlobalFilters(new PrismaClientExceptionFilter());
 
   // ✅ Swagger config
@@ -30,14 +33,33 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, config);
 
-  // Interface Swagger interativa
   SwaggerModule.setup('api', app, document);
 
-  // Endpoint para obter JSON do Swagger
   app.getHttpAdapter().get('/swagger-json', (_req, res) => {
     res.json(document);
   });
 
-  await app.listen(process.env.PORT ?? 3000);
+  // ✅ Carregar certificados externos
+  const keyPath = path.resolve('/home/anpdadmin/backlog-dim/dev-key.pem');
+  const certPath = path.resolve('/home/anpdadmin/backlog-dim/dev-cert.pem');
+
+  const httpsOptions = {
+    key: fs.readFileSync(keyPath),
+    cert: fs.readFileSync(certPath),
+  };
+
+  const server = https.createServer(
+    httpsOptions,
+    app.getHttpAdapter().getInstance(),
+  );
+
+  const PORT = parseInt(process.env.PORT || '3000', 10);
+
+  server.listen(PORT, () => {
+    console.log(
+      `🚀 cadastro-controladores-api rodando com HTTPS na porta ${PORT}`,
+    );
+  });
 }
+
 bootstrap();
