@@ -42,7 +42,8 @@ export class ControladorController {
   @ApiQuery({ name: 'ascending', required: false, example: true })
   @ApiResponse({ status: 200, description: 'Lista paginada de controladores' })
   findAll(@Query() query: BaseQueryParams) {
-    return this.service.findAll(query);
+    return { status: 'ok', message: 'Funcionando' };
+    //   return this.service.findAll(query);
   }
 
   @Get(':id')
