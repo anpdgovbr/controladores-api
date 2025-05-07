@@ -1,9 +1,19 @@
 import { Module } from '@nestjs/common';
 import { CnaeService } from './cnae.service';
 import { CnaeController } from './cnae.controller';
+import { JwtModule, JwtService } from '@nestjs/jwt';
+import { jwtConstants } from 'src/auth/constants';
 
 @Module({
+  imports: [
+    JwtModule.register({
+      global: true,
+      secret: jwtConstants.secret,
+      signOptions: { expiresIn: '60s', algorithm: 'HS256' },
+    }),
+  ],
   providers: [CnaeService],
-  controllers: [CnaeController],
+  exports: [JwtModule],
+  controllers: [CnaeController]
 })
 export class CnaeModule {}
