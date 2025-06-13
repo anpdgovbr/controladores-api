@@ -5,6 +5,7 @@ import {
   OnModuleInit,
 } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
+import type { PrismaClientWithEvents } from 'src/types/PrismaClientWithEvents';
 
 @Injectable()
 export class PrismaService
@@ -15,10 +16,9 @@ export class PrismaService
     await this.$connect();
   }
 
-  // ⚠️ Aqui aplicamos a correção com `as any`
-  async enableShutdownHooks(app: INestApplication) {
-    (this as any).$on('beforeExit', async () => {
-      await app.close();
+  enableShutdownHooks(app: INestApplication): void {
+    (this as PrismaClientWithEvents).$on('beforeExit', () => {
+      void app.close();
     });
   }
 
