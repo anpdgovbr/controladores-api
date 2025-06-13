@@ -83,9 +83,9 @@ export class ControladorService {
     });
   }
 
-  async findOne(id: number) {
-    return this.prisma.controlador.findUnique({
-      where: { id },
+  async findOne(id: number, incluirInativo = false) {
+    return this.prisma.controlador.findFirst({
+      where: { id, ...(incluirInativo ? {} : { active: true }) },
       include: { setor: true, cnae: true, grupoEconomico: true },
     });
   }

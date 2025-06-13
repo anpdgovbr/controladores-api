@@ -46,13 +46,33 @@ export class ControladorController {
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Buscar controlador por ID' })
-  @ApiParam({ name: 'id', example: 1 })
+  @ApiOperation({ summary: 'Buscar controlador ativo por ID' })
+  @ApiParam({
+    name: 'id',
+    type: Number,
+    example: 1,
+    description: 'ID do controlador',
+  })
   @ApiResponse({
     status: 200,
     description: 'Controlador encontrado com sucesso',
+    schema: {
+      example: {
+        id: 1,
+        nome: 'Controlador Exemplo',
+        cnpj: '12345678000100',
+        setor: { id: 2, nome: 'Financeiro' },
+        cnae: { id: 5, code: '6201-5/01', nome: 'Desenvolvimento de software' },
+        grupoEconomico: { id: 1, nome: 'Grupo XPTO' },
+        active: true,
+        exclusionDate: null,
+      },
+    },
   })
-  @ApiResponse({ status: 404, description: 'Controlador não encontrado' })
+  @ApiResponse({
+    status: 404,
+    description: 'Controlador não encontrado ou está desativado',
+  })
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.service.findOne(id);
   }
