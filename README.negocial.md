@@ -1,90 +1,91 @@
-# 🏢 cadastro-controladores-api
+<p align="center">
+  <a href="https://www.anpd.gov.br/">
+    <img src="https://www.gov.br/anpd/pt-br/assuntos/noticias/anpd-lanca-sua-nova-marca/anpd-vertical-cor.png" width="200" alt="ANPD Logo">
+  </a>
+</p>
 
-Microsserviço responsável pela gestão dos Controladores e Encarregados de Dados Pessoais no contexto da Lei Geral de Proteção de Dados (LGPD), bem como das suas estruturas societárias e agrupamentos econômicos.
-
----
-
-## 📌 Objetivo
-
-Centralizar o cadastro, manutenção e exposição dos dados relacionados aos **Controladores de Dados**, seus respectivos **Encarregados (DPOs)**, **Grupos Econômicos** e **Quadros Societários**, permitindo a reutilização por múltiplos sistemas internos da ANPD.
-
----
-
-## ⚖️ Fundamentação Legal
-
-O serviço se baseia nos conceitos definidos pela **LGPD (Lei nº 13.709/2018)**, em especial:
-
-- **Art. 5º, VI e VIII** – Definição de Controlador e Encarregado.
-- **Art. 7º, §5º** – Compartilhamento de dados dentro de grupo econômico.
-- **Art. 41** – Atribuições do Encarregado.
-- Jurisprudência complementar sobre **Grupo Econômico** e **Quadro Societário**.
+<h1 align="center">API de Cadastro de Controladores</h1>
+<h3 align="center">Visão de Negócio e Arquitetura</h3>
 
 ---
 
-## 🧭 Escopo funcional do MVP
+## 📌 Objetivo Estratégico
 
-### Entidades Principais
-
-| Entidade           | Descrição                                                                   |
-| ------------------ | --------------------------------------------------------------------------- |
-| `Controlador`      | Pessoa natural ou jurídica que toma decisões sobre o tratamento de dados.   |
-| `Encarregado`      | Ponto de contato com titulares e com a ANPD (DPO), interno ou terceirizado. |
-| `GrupoEconomico`   | Conjunto de controladores com vínculo estratégico e econômico comum.        |
-| `Socio`            | Sócio ou acionista, com CPF/CNPJ, tipo de participação e nacionalidade.     |
-| `SocioControlador` | Relação N:N entre sócios e controladores, com percentual de participação.   |
-| `Setor`, `CNAE`    | Metadados para categorização do controlador.                                |
+Centralizar e padronizar o cadastro de **agentes de tratamento de dados pessoais**, em especial **controladores**, seus respectivos **encarregados (DPOs)**, **grupos econômicos** e **quadros societários**. O objetivo é criar uma fonte única de verdade (Single Source of Truth) para ser consumida de forma segura e eficiente pelos sistemas internos da Autoridade Nacional de Proteção de Dados (ANPD), garantindo consistência e agilidade nos processos de fiscalização, regulação e conformidade.
 
 ---
 
-## 🏗️ Arquitetura e Stack
+## ⚖️ Fundamentação Legal e Contexto
 
-| Camada         | Tecnologia                                                   |
-| -------------- | ------------------------------------------------------------ |
-| Linguagem      | TypeScript                                                   |
-| Framework      | [NestJS](https://nestjs.com/)                                |
-| ORM            | [Prisma](https://www.prisma.io/)                             |
-| Banco de Dados | PostgreSQL                                                   |
-| API            | RESTful (padrão HTTP)                                        |
-| Autenticação   | JWT com chave secreta interna (rede segura)                  |
-| Segurança      | Acesso por sistemas internos (VPN/infra ANPD)                |
-| Auditoria      | Soft delete + campos de rastreio (`active`, `exclusionDate`) |
+Este microsserviço foi concebido para dar suporte direto às competências da ANPD, conforme a **Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018)**.
+
+- **Art. 5º, VI e VIII:** Define os papéis de **Controlador** e **Encarregado**.
+- **Art. 41:** Estabelece a obrigatoriedade da indicação do Encarregado e suas atribuições.
+- **Art. 7º, §5º e jurisprudência:** Reconhecem a figura do **grupo econômico** para fins de tratamento de dados.
+- **Governança de Dados:** A iniciativa promove a governança ao centralizar informações críticas, evitando redundância e inconsistência de dados entre os sistemas da Autoridade.
+
+---
+
+## 🧭 Escopo Funcional
+
+O serviço gerencia as seguintes entidades e seus relacionamentos:
+
+| Entidade           | Descrição Detalhada                                                                                                | Atributos Chave                                    |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------- |
+| `Controlador`      | Pessoa natural ou jurídica, de direito público ou privado, a quem competem as decisões sobre o tratamento de dados.   | CNPJ/CPF, Razão Social, Nome Fantasia, Setor, CNAE |
+| `Encarregado`      | Pessoa (DPO) indicada pelo controlador para atuar como canal de comunicação com os titulares e a ANPD.                | Nome, CPF, E-mail, Telefone                        |
+| `GrupoEconomico`   | Agrupamento de controladores que atuam de forma coordenada, compartilhando estratégias e recursos.                     | Nome do Grupo, Descrição                           |
+| `Socio`            | Pessoa física ou jurídica que compõe o quadro societário de um controlador.                                         | Nome, CPF/CNPJ, Nacionalidade, Tipo de Participação|
+| `SocioControlador` | Tabela de ligação que formaliza a relação N:N entre `Socio` e `Controlador`, especificando o percentual de participação. | Percentual de Participação, Data de Início         |
+| `Setor` / `CNAE`   | Metadados para classificação e categorização econômica e setorial dos controladores.                                 | Código, Descrição                                  |
+
+---
+
+## 🏗️ Arquitetura e Tecnologias
+
+A solução foi desenvolvida como um microsserviço, seguindo as melhores práticas de arquitetura de software para garantir escalabilidade, manutenibilidade e segurança.
+
+| Componente     | Tecnologia / Padrão                                                              |
+| -------------- | -------------------------------------------------------------------------------- | 
+| **Linguagem**      | TypeScript 5.8.3                                                                 |
+| **Framework**    | [NestJS](https://nestjs.com/) 11.1.3 – Framework Node.js para aplicações eficientes e escaláveis. |
+| **Acesso a Dados** | [Prisma](https://www.prisma.io/) 6.11.1 – ORM moderno para Node.js e TypeScript. |
+| **Banco de Dados** | PostgreSQL – Sistema de gerenciamento de banco de dados relacional.              |
+| **API**            | RESTful com documentação automática via [Swagger (OpenAPI)](https://swagger.io/). |
+| **Segurança**      | Acesso restrito à rede interna da ANPD. Planejamento para autenticação via JWT.  |
+| **Auditoria**      | Implementação de *soft delete* e campos de rastreabilidade (`createdAt`, `updatedAt`). |
 
 ---
 
 ## 📡 Integrações e Consumo
 
-- API HTTP REST interna
-- Padrão de busca por CNPJ, CPF ou nome
-- Foco na **interoperabilidade entre sistemas da ANPD**
-- Estrutura pensada para futura integração com gateways, eventos e enriquecimento externo
+A API foi projetada para ser o núcleo de informações sobre agentes de tratamento, sendo consumida por outros sistemas da ANPD, como:
+
+- **Sistema de Fiscalização:** Para obter dados atualizados de controladores e seus responsáveis.
+- **Portal de Serviços:** Para permitir que os próprios agentes atualizem seus dados cadastrais.
+- **Plataforma de Análise de Dados:** Para gerar relatórios e insights sobre o ecossistema de proteção de dados no Brasil.
 
 ---
 
-## ✅ Benefícios esperados
+## ✅ Benefícios para a ANPD
 
-- Redução de retrabalho entre sistemas que usam dados semelhantes
-- Padronização na gestão de controladores e DPOs
-- Base técnica para fiscalização, relatórios e auditoria
-- Alinhamento direto com os princípios da LGPD
-
----
-
-## 🚧 Status
-
-📍 Etapa atual: **CRUDs completos implementados para entidades principais**  
-🔜 Próximos passos:
-
-- Validação de regras específicas de negócio
-- Testes automatizados (unitários e e2e)
-- Definição da camada de autenticação (integração futura com AD/LDAP/Entra ID)
-- Implementação de versionamento e integração com sistemas consumidores
+- **Consistência e Confiabilidade:** Garante que todos os sistemas utilizem a mesma base de dados para informações de controladores.
+- **Eficiência Operacional:** Reduz o retrabalho e a necessidade de múltiplas atualizações cadastrais.
+- **Suporte à Decisão:** Fornece uma base de dados estruturada para análises e tomada de decisões estratégicas.
+- **Conformidade:** Facilita a gestão e a fiscalização do cumprimento da LGPD.
 
 ---
 
-## 👥 Autoria e responsabilidade
+## 🗺️ Roadmap e Próximos Passos
 
-Este microsserviço foi idealizado, desenvolvido e é mantido pela:
+- **[CONCLUÍDO]** Implementação dos CRUDs para todas as entidades principais.
+- **[EM ANDAMENTO]** Validação de regras de negócio complexas e testes automatizados (unitários e E2E).
+- **[PLANEJADO]** Definição e implementação da camada de autenticação e autorização (JWT).
+- **[FUTURO]** Integração com sistemas legados e novas plataformas da ANPD.
+- **[FUTURO]** Implementação de um sistema de versionamento de registros (histórico de alterações).
 
-> **DDSS – Divisão de Desenvolvimento e Sustentação de Sistemas**  
-> **CGTI/ANPD – Coordenação-Geral de Tecnologia da Informação**  
-> **Autoridade Nacional de Proteção de Dados (ANPD)**
+---
+
+## 👥 Autoria e Responsabilidade
+
+Este microsserviço é uma iniciativa da **Coordenação-Geral de Tecnologia da Informação (CGTI)** e mantido pela **Divisão de Desenvolvimento e Sustentação de Sistemas (DDSS)** da **Autoridade Nacional de Proteção de Dados (ANPD)**.
