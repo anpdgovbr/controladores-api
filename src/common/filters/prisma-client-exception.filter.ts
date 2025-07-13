@@ -1,10 +1,9 @@
 import {
-  ExceptionFilter,
-  Catch,
   ArgumentsHost,
+  Catch,
+  ExceptionFilter,
   HttpStatus,
 } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import { Request, Response } from 'express';
 
@@ -36,7 +35,7 @@ export class PrismaClientExceptionFilter
 
         break;
       }
-      case 'P2003':
+      case 'P2003': {
         const field = exception.meta?.field_name as string;
         if (field?.includes('controladorEmpresaExternaId')) {
           message =
@@ -47,6 +46,7 @@ export class PrismaClientExceptionFilter
           message = 'Relacionamento inválido: item referenciado não existe.';
         }
         break;
+      }
       case 'P2025':
         message = 'Registro não encontrado para a operação solicitada.';
         break;

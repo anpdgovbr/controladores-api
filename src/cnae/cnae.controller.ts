@@ -1,13 +1,13 @@
 import { Controller, Get, Param, ParseIntPipe, Query } from '@nestjs/common';
-import { CnaeService } from './cnae.service';
-import { BaseQueryParams } from 'src/types/base-query';
 import {
-  ApiTags,
   ApiOperation,
-  ApiResponse,
-  ApiQuery,
   ApiParam,
+  ApiQuery,
+  ApiResponse,
+  ApiTags,
 } from '@nestjs/swagger';
+import { BaseQueryParams } from 'src/types/base-query';
+import { CnaeService } from './cnae.service';
 
 @ApiTags('CNAEs')
 @Controller('cnaes')
