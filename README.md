@@ -11,7 +11,6 @@
 <p align="center">
   <img src="https://img.shields.io/badge/NestJS-11.1.3-red?logo=nestjs" alt="NestJS">
   <img src="https://img.shields.io/badge/TypeScript-5.8.3-blue?logo=typescript" alt="TypeScript">
-  <img src="https://img.shields.io/badge/Prisma-6.11.1-dark-green?logo=prisma" alt="Prisma">
   <img src="https://img.shields.io/badge/PostgreSQL-blue?logo=postgresql" alt="PostgreSQL">
   <img src="https://img.shields.io/badge/Node.js-24.0.13-green?logo=nodedotjs" alt="Node.js">
 </p>
