@@ -1,8 +1,31 @@
 {
-  "name": "cadastro-controladores-api",
-  "version": "0.0.7",
-  "description": "",
-  "author": "",
+  "name": "@anpdgovbr/controladores-api",
+  "version": "0.1.7",
+  "description": "API para cadastro e controle de controladores da ANPD.",
+  "author": "Luciano Édipo <luciano.psilva@anpd.gov.br> (https://github.com/lucianoedipo)",
+  "homepage": "https://github.com/anpdgovbr/controladores-api#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anpdgovbr/controladores-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/anpdgovbr/controladores-api/issues"
+  },
+  "keywords": [
+    "nestjs",
+    "prisma",
+    "api",
+    "anpd",
+    "controladores",
+    "governo"
+  ],
+  "contributors": [
+    "Equipe DDSS/CGTI/ANPD <desenvolvimento@anpd.gov.br>"
+  ],
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -27,13 +50,13 @@
     ]
   },
   "dependencies": {
-    "@nestjs/common": "^11.1.3",
+    "@nestjs/common": "^11.1.5",
     "@nestjs/config": "^4.0.2",
-    "@nestjs/core": "^11.1.3",
+    "@nestjs/core": "^11.1.5",
     "@nestjs/mapped-types": "^2.1.0",
-    "@nestjs/platform-express": "^11.1.3",
+    "@nestjs/platform-express": "^11.1.5",
     "@nestjs/swagger": "^11.2.0",
-    "@prisma/client": "^6.11.1",
+    "@prisma/client": "^6.13.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.2",
     "nestjs-prisma": "^0.25.0",
@@ -43,31 +66,32 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.31.0",
-    "@nestjs/cli": "^11.0.7",
+    "@eslint/js": "^9.32.0",
+    "@nestjs/cli": "^11.0.8",
     "@nestjs/schematics": "^11.0.5",
-    "@nestjs/testing": "^11.1.3",
+    "@nestjs/testing": "^11.1.5",
     "@swc/cli": "^0.7.8",
-    "@swc/core": "^1.12.11",
+    "@swc/core": "^1.13.3",
     "@types/express": "^5.0.3",
     "@types/jest": "^30.0.0",
-    "@types/node": "^24.0.13",
+    "@types/node": "^24.1.0",
     "@types/supertest": "^6.0.3",
-    "eslint": "^9.31.0",
-    "eslint-config-prettier": "^10.1.5",
-    "eslint-plugin-prettier": "^5.5.1",
+    "eslint": "^9.32.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.3",
     "globals": "^16.3.0",
-    "jest": "^30.0.4",
+    "husky": "^9.1.7",
+    "jest": "^30.0.5",
     "prettier": "^3.6.2",
-    "prisma": "^6.11.1",
+    "prisma": "^6.13.0",
     "source-map-support": "^0.5.21",
-    "supertest": "^7.1.3",
+    "supertest": "^7.1.4",
     "ts-jest": "^29.4.0",
     "ts-loader": "^9.5.2",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.36.0"
+    "typescript-eslint": "^8.38.0"
   },
   "jest": {
     "moduleFileExtensions": [
