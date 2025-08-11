@@ -1,6 +1,6 @@
-import { Module } from '@nestjs/common';
-import { ControladorService } from './controlador.service';
-import { ControladorController } from './controlador.controller';
+import { Module } from "@nestjs/common"
+import { ControladorService } from "./controlador.service"
+import { ControladorController } from "./controlador.controller"
 
 @Module({
   providers: [ControladorService],

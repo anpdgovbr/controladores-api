@@ -1,57 +1,57 @@
-import { ApiPropertyOptional } from '@nestjs/swagger';
-import { IsEmail, IsEnum, IsOptional, IsString, IsUrl } from 'class-validator';
-import { TipoControlador } from '@prisma/client';
+import { ApiPropertyOptional } from "@nestjs/swagger"
+import { IsEmail, IsEnum, IsOptional, IsString, IsUrl } from "class-validator"
+import { TipoControlador } from "@prisma/client"
 
 export class UpdateControladorDto {
-  @ApiPropertyOptional({ example: 'Empresa Exemplo LTDA' })
+  @ApiPropertyOptional({ example: "Empresa Exemplo LTDA" })
   @IsOptional()
   @IsString()
-  nome?: string;
+  nome?: string
 
   @ApiPropertyOptional({ enum: TipoControlador })
   @IsOptional()
   @IsEnum(TipoControlador)
-  tipo?: TipoControlador;
+  tipo?: TipoControlador
 
-  @ApiPropertyOptional({ example: '12345678000199' })
+  @ApiPropertyOptional({ example: "12345678000199" })
   @IsOptional()
   @IsString()
-  cnpj?: string;
+  cnpj?: string
 
-  @ApiPropertyOptional({ example: '12345678900' })
+  @ApiPropertyOptional({ example: "12345678900" })
   @IsOptional()
   @IsString()
-  cpf?: string;
+  cpf?: string
 
-  @ApiPropertyOptional({ example: 'https://empresa.com.br' })
+  @ApiPropertyOptional({ example: "https://empresa.com.br" })
   @IsOptional()
   @IsUrl()
-  site?: string;
+  site?: string
 
-  @ApiPropertyOptional({ example: 'contato@empresa.com.br' })
+  @ApiPropertyOptional({ example: "contato@empresa.com.br" })
   @IsOptional()
   @IsEmail()
-  email?: string;
+  email?: string
 
-  @ApiPropertyOptional({ example: '(61) 99999-0000' })
+  @ApiPropertyOptional({ example: "(61) 99999-0000" })
   @IsOptional()
   @IsString()
-  telefone?: string;
+  telefone?: string
 
-  @ApiPropertyOptional({ example: 'https://empresa.com.br/politica' })
+  @ApiPropertyOptional({ example: "https://empresa.com.br/politica" })
   @IsOptional()
   @IsUrl()
-  politicaPrivacidadeUrl?: string;
+  politicaPrivacidadeUrl?: string
 
   @ApiPropertyOptional({ example: 3 })
   @IsOptional()
-  setorId?: number;
+  setorId?: number
 
   @ApiPropertyOptional({ example: 5 })
   @IsOptional()
-  cnaeId?: number;
+  cnaeId?: number
 
   @ApiPropertyOptional({ example: 1 })
   @IsOptional()
-  grupoEconomicoId?: number;
+  grupoEconomicoId?: number
 }

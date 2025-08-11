@@ -1,22 +1,22 @@
-import { IsString, IsEnum, IsOptional } from 'class-validator';
-import { TipoParticipacaoSocietaria } from '@prisma/client';
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { IsString, IsEnum, IsOptional } from "class-validator"
+import { TipoParticipacaoSocietaria } from "@prisma/client"
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger"
 
 export class CreateSocioDto {
-  @ApiProperty({ example: 'Maria da Silva' })
+  @ApiProperty({ example: "Maria da Silva" })
   @IsString()
-  nome: string;
+  nome: string
 
-  @ApiProperty({ example: '12345678900' })
+  @ApiProperty({ example: "12345678900" })
   @IsString()
-  cpfCnpj: string;
+  cpfCnpj: string
 
   @ApiProperty({ enum: TipoParticipacaoSocietaria })
   @IsEnum(TipoParticipacaoSocietaria)
-  tipoParticipacao: TipoParticipacaoSocietaria;
+  tipoParticipacao: TipoParticipacaoSocietaria
 
-  @ApiPropertyOptional({ example: 'Brasileira' })
+  @ApiPropertyOptional({ example: "Brasileira" })
   @IsOptional()
   @IsString()
-  nacionalidade?: string;
+  nacionalidade?: string
 }

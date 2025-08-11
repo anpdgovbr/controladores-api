@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { AddSocioControladorDto } from './dto/add-socio-controlador.dto';
+import { Injectable } from "@nestjs/common"
+import { PrismaService } from "src/prisma/prisma.service"
+import { AddSocioControladorDto } from "./dto/add-socio-controlador.dto"
 
 @Injectable()
 export class SocioControladorService {
@@ -10,14 +10,14 @@ export class SocioControladorService {
     return this.prisma.socioControlador.findMany({
       where: { controladorId },
       include: { socio: true },
-    });
+    })
   }
 
   async listarControladores(socioId: number) {
     return this.prisma.socioControlador.findMany({
       where: { socioId },
       include: { controlador: true },
-    });
+    })
   }
 
   async adicionarVinculo(controladorId: number, dto: AddSocioControladorDto) {
@@ -27,7 +27,7 @@ export class SocioControladorService {
         socioId: dto.socioId,
         percentual: dto.percentual,
       },
-    });
+    })
   }
 
   async removerVinculo(controladorId: number, socioId: number) {
@@ -38,6 +38,6 @@ export class SocioControladorService {
           controladorId,
         },
       },
-    });
+    })
   }
 }

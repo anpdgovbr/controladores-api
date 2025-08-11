@@ -1,8 +1,8 @@
-import { IsString } from 'class-validator';
-import { ApiProperty } from '@nestjs/swagger';
+import { IsString } from "class-validator"
+import { ApiProperty } from "@nestjs/swagger"
 
 export class CreateSetorDto {
-  @ApiProperty({ example: 'Tecnologia' })
+  @ApiProperty({ example: "Tecnologia" })
   @IsString()
-  nome: string;
+  nome: string
 }

@@ -1,6 +1,6 @@
-import { Module } from '@nestjs/common';
-import { CnaeController } from './cnae.controller';
-import { CnaeService } from './cnae.service';
+import { Module } from "@nestjs/common"
+import { CnaeController } from "./cnae.controller"
+import { CnaeService } from "./cnae.service"
 
 @Module({
   providers: [CnaeService],

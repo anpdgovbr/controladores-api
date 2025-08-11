@@ -1,21 +1,21 @@
-import { Controller, Get } from '@nestjs/common';
-import { ApiOperation } from '@nestjs/swagger';
+import { Controller, Get } from "@nestjs/common"
+import { ApiOperation } from "@nestjs/swagger"
 
 @Controller()
 export class AppController {
   @Get()
-  @ApiOperation({ summary: 'Informações do sistema' })
+  @ApiOperation({ summary: "Informações do sistema" })
   getRoot() {
     return {
-      sistema: 'Cadastro de Controladores - ANPD',
+      sistema: "Cadastro de Controladores - ANPD",
       descricao:
-        'API para gerenciamento de controladores, encarregados e grupos econômicos conforme LGPD',
-      versao: '1.0.0',
+        "API para gerenciamento de controladores, encarregados e grupos econômicos conforme LGPD",
+      versao: "1.0.0",
       documentacao: {
-        swagger: '/api',
-        openapiJson: '/swagger-json',
+        swagger: "/api",
+        openapiJson: "/swagger-json",
       },
       timestamp: new Date().toISOString(),
-    };
+    }
   }
 }

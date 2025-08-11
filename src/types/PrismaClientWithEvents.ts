@@ -1,6 +1,6 @@
 // src/types/PrismaClientWithEvents.ts
-import type { PrismaClient } from '@prisma/client';
+import type { PrismaClient } from "@prisma/client"
 
 export type PrismaClientWithEvents = PrismaClient & {
-  $on(event: 'beforeExit', callback: () => void): void;
-};
+  $on(event: "beforeExit", callback: () => void): void
+}
