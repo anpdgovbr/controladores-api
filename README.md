@@ -9,11 +9,10 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/NestJS-11.1.6-red?logo=nestjs" alt="NestJS">
-  <img src="https://img.shields.io/badge/TypeScript-5.9.2-blue?logo=typescript" alt="TypeScript">
-  <img src="https://img.shields.io/badge/Prisma-6.13.0-2D3748?logo=prisma" alt="Prisma">
+  <img src="https://img.shields.io/badge/NestJS-11.1.3-red?logo=nestjs" alt="NestJS">
+  <img src="https://img.shields.io/badge/TypeScript-5.8.3-blue?logo=typescript" alt="TypeScript">
   <img src="https://img.shields.io/badge/PostgreSQL-blue?logo=postgresql" alt="PostgreSQL">
-  <img src="https://img.shields.io/badge/Node.js-22.17.0-green?logo=nodedotjs" alt="Node.js">
+  <img src="https://img.shields.io/badge/Node.js-24.0.13-green?logo=nodedotjs" alt="Node.js">
 </p>
 
 <p align="center">
@@ -40,13 +39,11 @@
 
 ## 📦 Tecnologias Utilizadas
 
-- **Framework:** [NestJS](https://nestjs.com/) (v11.1.6)
-- **Linguagem:** [TypeScript](https://www.typescriptlang.org/) (v5.9.2)
-- **ORM:** [Prisma](https://www.prisma.io/) (v6.13.0)
+- **Framework:** [NestJS](https://nestjs.com/) (v11.1.3)
+- **Linguagem:** [TypeScript](https://www.typescriptlang.org/) (v5.8.3)
+- **ORM:** [Prisma](https://www.prisma.io/) (v6.11.1)
 - **Banco de Dados:** [PostgreSQL](https://www.postgresql.org/)
 - **Documentação:** [Swagger](https://swagger.io/)
-- **Autenticação:** JWT
-- **Validação:** Class Validator & Class Transformer
 
 ---
 
@@ -138,7 +135,6 @@ A documentação completa dos endpoints está disponível via Swagger UI:
 │   ├── migrations/     # Migrações do banco
 │   └── seed/           # Scripts de população inicial
 ├── src/                # Código-fonte da aplicação
-│   ├── auth/           # Módulo de autenticação
 │   ├── controlador/    # Módulo de controladores
 │   ├── encarregado/    # Módulo de encarregados (DPOs)
 │   ├── grupo-economico/# Módulo de grupos econômicos

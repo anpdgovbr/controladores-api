@@ -1,10 +1,8 @@
 import { ValidationPipe } from '@nestjs/common';
-import { NestFactory, Reflector } from '@nestjs/core';
-import { JwtService } from '@nestjs/jwt';
+import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import type { Express, Response } from 'express';
 import { AppModule } from './app.module';
-import { AuthGuard } from './auth/auth.guard';
 import { PrismaClientExceptionFilter } from './common/filters/prisma-client-exception.filter';
 
 async function bootstrap(): Promise<void> {
@@ -38,11 +36,6 @@ async function bootstrap(): Promise<void> {
   expressApp.get('/swagger-json', (_req, res: Response) => {
     res.json(document);
   });
-
-  // ✅ Auth guard
-  const reflector = app.get(Reflector);
-  const jwtService = app.get(JwtService);
-  app.useGlobalGuards(new AuthGuard(jwtService, reflector));
 
   await app.listen(process.env.PORT ?? 3000);
 }
