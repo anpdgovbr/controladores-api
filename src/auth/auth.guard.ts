@@ -45,17 +45,20 @@ export class AuthGuard implements CanActivate {
         secret: jwtConstants.secret,
       });
       request.user = payload;
-
-      this.logger.log(payload);
-    } catch (error) {
-      this.logger.log('Erro ao verificar token: ' + error);
+      this.logger.log(`Token válido para sub=${payload.sub}`);
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : String(err);
+      this.logger.error(`Erro ao verificar token: ${msg}`);
       throw new UnauthorizedException();
     }
     return true;
   }
 
   private extractTokenFromHeader(request: Request): string | undefined {
-    const [type, token] = request.headers.authorization?.split(' ') ?? [];
-    return type === 'Bearer' ? token : undefined;
+    const auth = request.headers.authorization;
+    if (!auth) return undefined;
+    const [type, token] = auth.split(' ');
+    if (!type || !token) return undefined;
+    return type.toLowerCase() === 'bearer' ? token : undefined;
   }
 }

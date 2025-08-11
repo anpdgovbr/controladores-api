@@ -6,7 +6,15 @@ import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
   {
-    ignores: ['eslint.config.mjs', 'ecosystem.config.cjs', 'scripts/**'],
+    ignores: [
+      'eslint.config.mjs',
+      'ecosystem.config.cjs',
+      'scripts/**',
+      'dist/**',
+      'node_modules/**',
+      'coverage/**',
+      'prisma/migrations/**',
+    ],
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
@@ -29,6 +37,10 @@ export default tseslint.config(
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-floating-promises': 'warn',
       '@typescript-eslint/no-unsafe-argument': 'warn',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_' },
+      ],
     },
   },
 );
