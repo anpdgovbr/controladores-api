@@ -1,6 +1,6 @@
 {
   "name": "@anpdgovbr/controladores-api",
-  "version": "0.1.7",
+  "version": "0.2.0",
   "description": "API para cadastro e controle de controladores da ANPD.",
   "author": "Luciano Édipo <luciano.psilva@anpd.gov.br> (https://github.com/lucianoedipo)",
   "homepage": "https://github.com/anpdgovbr/controladores-api#readme",
