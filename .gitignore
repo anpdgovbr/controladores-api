@@ -3,7 +3,7 @@
 /node_modules
 /build
 package-lock.json
-
+ecosystem.config.cjs
 
 # Logs
 logs
@@ -60,3 +60,11 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # Dependency lock files
 package-lock.json
+
+# Infraestrutura PostgreSQL ANPD
+.infra/
+infra-db/
+
+# Scripts temporários da infraestrutura (caso fiquem na raiz)
+setup-infra.sh
+setup-infra-temp.sh
