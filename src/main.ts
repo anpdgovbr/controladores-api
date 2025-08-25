@@ -9,7 +9,8 @@ async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
 
   // 🔒 Confia nos headers do proxy (X-Forwarded-For / X-Forwarded-Proto)
-  app.set("trust proxy", 1);
+  const expressApp = app.getHttpAdapter().getInstance() as Express;
+  expressApp.set("trust proxy", 1);
 
   // ✅ Validação
   app.useGlobalPipes(
@@ -34,7 +35,6 @@ async function bootstrap(): Promise<void> {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup("api", app, document);
 
-  const expressApp = app.getHttpAdapter().getInstance() as Express;
   expressApp.get("/swagger-json", (_req, res: Response) => {
     res.json(document);
   });
