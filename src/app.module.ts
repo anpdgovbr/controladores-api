@@ -10,6 +10,7 @@ import { CnaeModule } from "./cnae/cnae.module"
 import { GrupoEconomicoModule } from "./grupo-economico/grupo-economico.module"
 import { SocioModule } from "./socio/socio.module"
 import { SocioControladorModule } from "./socio-controlador/socio-controlador.module"
+import { HealthController } from "./health.controller"
 
 @Module({
   imports: [
@@ -23,7 +24,7 @@ import { SocioControladorModule } from "./socio-controlador/socio-controlador.mo
     SocioModule,
     SocioControladorModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, HealthController],
   providers: [AppService],
 })
 export class AppModule {}
